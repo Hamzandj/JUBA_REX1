@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 import MotionSection from "@/components/shared/motion-section";
 import { UserProfile } from "@/types";
-import { JubarexContext, JubarexContextType } from "./layout";
+import { JubarexContext, JubarexContextType } from "./context";
 
 const Home = () => {
   const { user, setUser, userProfile, setUserProfile } = useContext(
@@ -95,11 +95,9 @@ const Home = () => {
         {/* Buttons  */}
 
         {user?.email ? (
-                    <div className="flex justify-center items-center gap-x-4 mt-8 lg:mt-12">
-
-           
+          <div className="flex justify-center items-center gap-x-4 mt-8 lg:mt-12">
             <h2>
-              Hello {user.firstname}  {user.lastname}
+              Hello {user.firstname} {user.lastname}
             </h2>
           </div>
         ) : (

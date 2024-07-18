@@ -11,17 +11,10 @@ import BottomNav from "@/components/bottom-nav";
 import Sidebar from "@/components/sidebar";
 import Topbar from "@/components/topbar";
 import { User, UserProfile } from "@/types";
-import { createContext, Dispatch, useState } from "react";
+import { useState } from "react";
+import { JubarexContext } from "./context";
 
 const nunito = Nunito({ subsets: ["latin"] });
-
-export type JubarexContextType = {
-  user: User | undefined;
-  setUser: Dispatch<User>;
-  userProfile: UserProfile | undefined;
-  setUserProfile: Dispatch<UserProfile>;
-};
-export const JubarexContext = createContext<JubarexContextType | null>(null);
 
 const metadata: Metadata = {
   title: "Ancient Treasures",

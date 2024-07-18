@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
 
-import { JubarexContext, JubarexContextType } from "@/app/layout";
+import { JubarexContext, JubarexContextType } from "@/app/context";
 import Logo from "@/components/shared/logo";
 import NavigationLinks from "@/components/shared/navigation-links";
 import ThemeToggle from "@/components/theme-toggle";
