@@ -1,35 +1,29 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
+import { useContext } from "react";
 
-
-import ThemeToggle from '@/components/theme-toggle'
-import Logo from '@/components/shared/logo'
-import NavigationLinks from '@/components/shared/navigation-links'
-
+import { JubarexContext, JubarexContextType } from "@/app/layout";
+import Logo from "@/components/shared/logo";
+import NavigationLinks from "@/components/shared/navigation-links";
+import ThemeToggle from "@/components/theme-toggle";
 
 const Sidebar = () => {
+  const { user } = useContext(JubarexContext) as JubarexContextType;
+  const pathname = usePathname();
 
-    const pathname = usePathname()
+  return (
+    <aside className="sidebar">
+      {/* Displaying the logo */}
+      <Logo />
 
-    return (
-        <aside className='sidebar'>
+      {/* Displaying the main navigation links */}
+      {user?.email ? <NavigationLinks /> : ""}
 
-            {/* Displaying the logo */}
-            <Logo />
+      {/* Displaying the theme toggle */}
+      <ThemeToggle />
+    </aside>
+  );
+};
 
-
-            {/* Displaying the main navigation links */}
-            <NavigationLinks />
-
-
-            {/* Displaying the theme toggle */}
-            <ThemeToggle />
-        </aside>
-    )
-}
-
-
-
-export default Sidebar
+export default Sidebar;

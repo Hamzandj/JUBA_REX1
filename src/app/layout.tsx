@@ -1,46 +1,63 @@
-import type { Metadata } from 'next'
-import { Nunito } from 'next/font/google'
-import './globals.css'
-import { ThemeProvider } from "@/components/theme-provider"
+"use client";
 
-import { Analytics } from '@vercel/analytics/react';
+import { ThemeProvider } from "@/components/theme-provider";
+import type { Metadata } from "next";
+import { Nunito } from "next/font/google";
+import "./globals.css";
 
-import Sidebar from '@/components/sidebar'
-import Topbar from '@/components/topbar'
-import BottomNav from '@/components/bottom-nav'
+import { Analytics } from "@vercel/analytics/react";
 
-const nunito = Nunito({ subsets: ['latin'] })
+import BottomNav from "@/components/bottom-nav";
+import Sidebar from "@/components/sidebar";
+import Topbar from "@/components/topbar";
+import { User, UserProfile } from "@/types";
+import { createContext, Dispatch, useState } from "react";
 
-export const metadata: Metadata = {
-  title: 'Ancient Treasures',
-}
+const nunito = Nunito({ subsets: ["latin"] });
+
+export type JubarexContextType = {
+  user: User | undefined;
+  setUser: Dispatch<User>;
+  userProfile: UserProfile | undefined;
+  setUserProfile: Dispatch<UserProfile>;
+};
+export const JubarexContext = createContext<JubarexContextType | null>(null);
+
+const metadata: Metadata = {
+  title: "Ancient Treasures",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
+  const [user, setUser] = useState<User | undefined>();
+  const [userProfile, setUserProfile] = useState<UserProfile | undefined>();
+
   return (
-    <html lang="en" >
-      <body className={`font-nunito bg-bg-color-light dark:bg-bg-color-dark/50`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
+    <html lang="en">
+      <body
+        className={`font-nunito bg-bg-color-light dark:bg-bg-color-dark/50`}
+      >
+        <JubarexContext.Provider
+          value={{ user, setUser, userProfile, setUserProfile }}
         >
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Sidebar />
+            <Topbar />
+            <BottomNav />
 
-          <Sidebar />
-          <Topbar />
-          <BottomNav />
-
-          <main className='main'>
-            {children}
-          </main>
-
-        </ThemeProvider>
-        <Analytics />
+            <main className="main">{children}</main>
+          </ThemeProvider>
+          <Analytics />
+        </JubarexContext.Provider>
       </body>
     </html>
-  )
+  );
 }
