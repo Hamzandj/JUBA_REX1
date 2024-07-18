@@ -16,10 +16,10 @@ export default function About() {
   return (
     <section className="relative">
       <h1>
-        {user!.firstname} {user!.lastname}
+        {user?.firstname} {user?.lastname}
       </h1>
-      <h2>Email : {user!.email} </h2>
-      <h2>Is Admin ? : {user!.isAdmin ? "true" : "false"} </h2>
+      <h2>Email : {user?.email} </h2>
+      <h2>Is Admin ? : {user?.isAdmin ? "true" : "false"} </h2>
     </section>
   );
 }

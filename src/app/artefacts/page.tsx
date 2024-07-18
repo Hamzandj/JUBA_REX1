@@ -5,10 +5,7 @@ import { DownloadIcon } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { JubarexContext, JubarexContextType } from "../context";
 
-type PropTypes = {
-  mobile?: boolean;
-};
-export default function Artefacts({ mobile = false }: PropTypes) {
+export default function Artefacts() {
   const {
     user,
     setUser,
@@ -86,8 +83,6 @@ export default function Artefacts({ mobile = false }: PropTypes) {
     (async () => await refreshArtefacts())();
   }, []);
 
-  const iconSize = mobile ? 20 : 24;
-
   return (
     <section className="relative">
       <table>
@@ -101,7 +96,7 @@ export default function Artefacts({ mobile = false }: PropTypes) {
         </tr>
         {artefacts! && artefacts.length > 0
           ? artefacts.map((artefact) => (
-              <tr>
+              <tr key={artefact._id}>
                 <td>{artefact._id}</td>
                 <td>{artefact.title}</td>
                 <td>{artefact.owner}</td>
@@ -109,7 +104,7 @@ export default function Artefacts({ mobile = false }: PropTypes) {
                   <button
                     onClick={() => download(artefact._id, artefact.fileUrl)}
                   >
-                    <DownloadIcon size={iconSize} />
+                    <DownloadIcon size={24} />
                   </button>
                 </td>
                 <td>{artefact.year}</td>
