@@ -41,13 +41,13 @@ const NavigationLinks = ({ mobile = false }: PropTypes) => {
       </Link>
 
       <Link
-        href="/categories"
+        href="/artefacts"
         className={`nav-link ${
           pathname === "/categories" && "selected-nav-link"
         }`}
       >
         <TbCategoryFilled size={iconSize} />
-        <p className={textSize}>Categories</p>
+        <p className={textSize}>Artefacts</p>
       </Link>
       <Link
         href="/about"

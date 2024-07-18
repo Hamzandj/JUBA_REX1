@@ -11,6 +11,7 @@ import BottomNav from "@/components/bottom-nav";
 import Sidebar from "@/components/sidebar";
 import Topbar from "@/components/topbar";
 import { User, UserProfile } from "@/types";
+import { Layout } from "lucide-react";
 import { useEffect, useState } from "react";
 import { JubarexContext } from "./context";
 
@@ -83,30 +84,33 @@ export default function RootLayout({
       <body
         className={`font-nunito bg-bg-color-light dark:bg-bg-color-dark/50`}
       >
-        <JubarexContext.Provider
-          value={{
-            user,
-            setUser,
-            userProfile,
-            setUserProfile,
-            logout,
-            refreshUserFromToken,
-          }}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
+        {" "}
+       
+          <JubarexContext.Provider
+            value={{
+              user,
+              setUser,
+              userProfile,
+              setUserProfile,
+              logout,
+              refreshUserFromToken,
+            }}
           >
-            <Sidebar />
-            <Topbar />
-            <BottomNav />
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Sidebar />
+              <Topbar />
+              <BottomNav />
 
-            <main className="main">{children}</main>
-          </ThemeProvider>
-          <Analytics />
-        </JubarexContext.Provider>
+              <main className="main">{children}</main>
+            </ThemeProvider>
+            <Analytics />
+          </JubarexContext.Provider>
+       
       </body>
     </html>
   );

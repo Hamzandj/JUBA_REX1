@@ -6,18 +6,20 @@ import Orbits from "@/components/shared/orbits";
 import { Button } from "@/components/ui/button";
 
 import MotionSection from "@/components/shared/motion-section";
-import { UserProfile } from "@/types";
 import { JubarexContext, JubarexContextType } from "./context";
 
 const Home = () => {
-  const { user, setUser, userProfile, setUserProfile, logout ,refreshUserFromToken} = useContext(
-    JubarexContext
-  ) as JubarexContextType;
+  const {
+    user,
+    setUser,
+    userProfile,
+    setUserProfile,
+    logout,
+    refreshUserFromToken,
+  } = useContext(JubarexContext) as JubarexContextType;
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
-
 
   const login = async () => {
     const response = await fetch(
