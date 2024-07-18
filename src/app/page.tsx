@@ -10,12 +10,14 @@ import { UserProfile } from "@/types";
 import { JubarexContext, JubarexContextType } from "./context";
 
 const Home = () => {
-  const { user, setUser, userProfile, setUserProfile } = useContext(
+  const { user, setUser, userProfile, setUserProfile, logout ,refreshUserFromToken} = useContext(
     JubarexContext
   ) as JubarexContextType;
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+
 
   const login = async () => {
     const response = await fetch(
@@ -34,34 +36,7 @@ const Home = () => {
     //save token to session
     localStorage.setItem("accessToken", res.access_token);
 
-    // get profile
-    const userProfileResponse = await fetch(
-      process.env.NEXT_PUBLIC_BACKEND_URL + "/auth/profile",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + res.access_token,
-        },
-      }
-    );
-    const userProfile: UserProfile = await userProfileResponse.json();
-    setUserProfile(userProfile);
-
-    //get user
-
-    const userResponse = await fetch(
-      process.env.NEXT_PUBLIC_BACKEND_URL + "/user/" + userProfile.sub,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + res.access_token,
-        },
-      }
-    );
-    const user = await userResponse.json();
-    setUser(user);
+    await refreshUserFromToken();
   };
 
   return (

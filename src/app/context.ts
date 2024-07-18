@@ -3,9 +3,11 @@ import { Dispatch, createContext } from "react";
 
 export type JubarexContextType = {
   user: User | undefined;
-  setUser: Dispatch<User>;
+  setUser: Dispatch<User | undefined>;
   userProfile: UserProfile | undefined;
-  setUserProfile: Dispatch<UserProfile>;
+  setUserProfile: Dispatch<UserProfile | undefined>;
+  logout: () => {};
+  refreshUserFromToken: () => {};
 };
 
 export const JubarexContext = createContext<JubarexContextType | null>(null);
