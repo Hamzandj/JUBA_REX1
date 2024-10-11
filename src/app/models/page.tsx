@@ -32,14 +32,14 @@ export default function Models() {
       name: "Ancient Vase",
       description: "A beautiful ancient vase from the Ming dynasty.",
       imageUrl: img001.src,
-      fileUrl : "/house1.glb"
+      fileUrl : "/house3.glb"
     },
     {
       id: 2,
       name: "Pharaoh Statue",
       description: "A golden statue of Pharaoh Tutankhamun, found in the Valley of the Kings.",
       imageUrl: img019.src,
-      fileUrl : "/house2.glb"
+      fileUrl : "/house3.glb"
     },
     {
       id: 3,

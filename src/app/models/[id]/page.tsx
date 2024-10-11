@@ -38,7 +38,7 @@ const ItemDetail = ({ params }) => {
             description:
                 "This finely crafted medieval sword, originating from the 14th century, is a testament to the artistry of weapon-making in the Middle Ages. Featuring intricate engravings along the blade and a beautifully designed hilt, this sword was not only a practical weapon but also a symbol of nobility and chivalry. Its balance and craftsmanship reflect the advanced techniques of the period, making it a prized possession for any collector. Holding this sword allows one to imagine the battles fought and the legends created during its time.",
             imageUrl: img021.src,
-            fileUrl: "/house1.glb",
+            fileUrl: "/house3.glb",
         },
     ];
 
