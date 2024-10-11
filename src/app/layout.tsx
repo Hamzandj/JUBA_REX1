@@ -81,11 +81,13 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+         
       <body
         className={`font-nunito bg-bg-color-light dark:bg-bg-color-dark/50`}
       >
-        {" "}
-       
+      
+   
+    
           <JubarexContext.Provider
             value={{
               user,
@@ -111,6 +113,8 @@ export default function RootLayout({
             <Analytics />
           </JubarexContext.Provider>
        
+
+         
       </body>
     </html>
   );
