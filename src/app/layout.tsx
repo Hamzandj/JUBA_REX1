@@ -18,104 +18,97 @@ import { JubarexContext } from "./context";
 const nunito = Nunito({ subsets: ["latin"] });
 
 const metadata: Metadata = {
-  title: "Ancient Treasures",
+    title: "Ancient Treasures",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-  const [user, setUser] = useState<User | undefined>();
-  const [userProfile, setUserProfile] = useState<UserProfile | undefined>();
+    const [user, setUser] = useState<User | undefined>();
+    const [userProfile, setUserProfile] = useState<UserProfile | undefined>();
 
-  const logout = async () => {
-    setUser(undefined);
-    setUserProfile(undefined);
-  };
+    const logout = async () => {
+        setUser(undefined);
+        setUserProfile(undefined);
+    };
 
-  const refreshUserFromToken = async () => {
-    //get token to session
-    const accessToken = await localStorage.getItem("accessToken");
+    const refreshUserFromToken = async () => {
+        //get token to session
+        const accessToken = await localStorage.getItem("accessToken");
 
-    if (!accessToken) {
-      console.error("No access token found on cache, return to login");
-      await logout();
-    }
+        if (!accessToken) {
+            console.error("No access token found on cache, return to login");
+            await logout();
+        }
 
-    // get profile
-    const userProfileResponse = await fetch(
-      process.env.NEXT_PUBLIC_BACKEND_URL + "/auth/profile",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + accessToken,
-        },
-      }
-    );
-    const userProfile: UserProfile = await userProfileResponse.json();
-    setUserProfile(userProfile);
+        // get profile
+        const userProfileResponse = await fetch(
+            process.env.NEXT_PUBLIC_BACKEND_URL + "/auth/profile",
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + accessToken,
+                },
+            }
+        );
+        const userProfile: UserProfile = await userProfileResponse.json();
+        setUserProfile(userProfile);
 
-    //get user
+        //get user
 
-    const userResponse = await fetch(
-      process.env.NEXT_PUBLIC_BACKEND_URL + "/user/" + userProfile.sub,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + accessToken,
-        },
-      }
-    );
-    const user = await userResponse.json();
-    setUser(user);
-  };
+        const userResponse = await fetch(
+            process.env.NEXT_PUBLIC_BACKEND_URL + "/user/" + userProfile.sub,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + accessToken,
+                },
+            }
+        );
+        const user = await userResponse.json();
+        setUser(user);
+    };
 
-  useEffect(() => {
-    (async () => {
-      if (!user || !user.email) await refreshUserFromToken();
-    })();
-  }, []);
+    useEffect(() => {
+        (async () => {
+            if (!user || !user.email) await refreshUserFromToken();
+        })();
+    }, []);
 
-  return (
-    <html lang="en">
-         
-      <body
-        className={`font-nunito bg-bg-color-light dark:bg-bg-color-dark/50`}
-      >
-      
-   
-    
-          <JubarexContext.Provider
-            value={{
-              user,
-              setUser,
-              userProfile,
-              setUserProfile,
-              logout,
-              refreshUserFromToken,
-            }}
-          >
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="dark"
-              enableSystem
-              disableTransitionOnChange
+    return (
+        <html lang="en">
+            <body
+                className={`font-nunito bg-bg-color-light dark:bg-bg-color-dark/50`}
             >
-              <Sidebar />
-              <Topbar />
-              <BottomNav />
+                <JubarexContext.Provider
+                    value={{
+                        user,
+                        setUser,
+                        userProfile,
+                        setUserProfile,
+                        logout,
+                        refreshUserFromToken,
+                    }}
+                >
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="dark"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <Sidebar />
+                        <Topbar />
+                        <BottomNav />
 
-              <main className="main">{children}</main>
-            </ThemeProvider>
-            <Analytics />
-          </JubarexContext.Provider>
-       
-
-         
-      </body>
-    </html>
-  );
+                        <main className="main">{children}</main>
+                    </ThemeProvider>
+                    <Analytics />
+                </JubarexContext.Provider>
+            </body>
+        </html>
+    );
 }

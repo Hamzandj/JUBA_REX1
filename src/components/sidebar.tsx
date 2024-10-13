@@ -19,6 +19,7 @@ const Sidebar = () => {
 
       {/* Displaying the main navigation links */}
       {user?.email ? <NavigationLinks /> : ""}
+      <NavigationLinks />  
 
       {/* Displaying the theme toggle */}
       <ThemeToggle />
