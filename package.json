@@ -20,6 +20,7 @@
     "@types/react-slick": "^0.23.12",
     "@types/three": "^0.169.0",
     "@vercel/analytics": "^1.1.1",
+    "ali-oss": "^6.21.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.16",
@@ -37,6 +38,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/ali-oss": "^6.16.11",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

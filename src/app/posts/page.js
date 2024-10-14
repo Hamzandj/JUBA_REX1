@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image"; 
-import { items } from "@/utils/db.js";
+import Image from "next/image";
+import { getAllArtefacts } from "../services/backend-service";
 
 export default function Posts() {
+
+    const items = getAllArtefacts();
     return (
         <section className="relative container mx-auto h-screen p-4 sm:p-8 bg-white dark:bg-black rounded-lg transition-colors duration-300 ease-in-out"> {/* Color transition */}
           

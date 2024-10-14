@@ -3,16 +3,18 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ModelViewer from "@/components/ModelViewer";
-import { items } from "@/utils/db.js";
+import { getArtefactById } from "../services/backend-service";
 
 const ItemDetail = ({ params }) => {
     const { id } = params;
     const [showItem, setShowItem] = useState({});
 
     useEffect(() => {
-        const selectedItem = items.find((item) => item.id === +id);
+        const selectedItem = getArtefactById(id);
         setShowItem(selectedItem || {});
     }, [id]);
+
+
 
     return (
         <div className="relative container mx-auto h-screen p-4 sm:p-8 bg-white dark:bg-black rounded-lg transition-colors duration-300 ease-in-out mb-20"> {/* Color transition */}

@@ -21,18 +21,9 @@ export type Tag = {
 };
 
 export type Artefact = {
-  _id: string;
-  title: string;
-  height: number;
-  width: number;
-  depth: number;
-  year: number;
-  tags: Tag[];
+  id: number;
+  name: string;
+  description: string;
+  imageUrl: string;
   fileUrl: string;
-  owner: string;
-  createdBy: User;
-  creationLongitude: number;
-  creationLatitude: number;
-  currentLongitude: number;
-  currentLatitude: number;
 };
